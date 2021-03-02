@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  db:
+    build: crud-database/.
+    restart: always
+    ports:
+      - "5432:5432"
+  crud:
+    build: crud/.
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    links:
+      - "db:database"
